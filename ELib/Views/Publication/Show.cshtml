@@ -1,0 +1,74 @@
+﻿@model ELib.Models.ShowPublicationModel
+
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Author)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Author)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Year)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Year)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Theme)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Theme)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Annotation)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Annotation)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            <div class="form-actions no-color">
+                @Html.ActionLink("Скачать публикацию", "Download", new { id=Model.Id })
+            </div>
+        }
+
+        @if (Model.IsUser)
+        {
+            using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    @Html.ActionLink("Редактировать", "Change", new { id=Model.Id })
+                </div>
+            }
+        }
+
+
+
+    </div>
+
